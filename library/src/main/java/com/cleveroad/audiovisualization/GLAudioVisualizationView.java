@@ -3,6 +3,7 @@ package com.cleveroad.audiovisualization;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
@@ -39,6 +40,11 @@ public class GLAudioVisualizationView extends GLSurfaceView implements AudioVisu
     }
 
     private void init() {
+
+        setZOrderMediaOverlay(true);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        getHolder().setFormat(PixelFormat.TRANSLUCENT);
+
         setEGLContextClientVersion(EGL_VERSION);
         setRenderer(renderer);
         renderer.calmDownListener(new CalmDownListener() {
